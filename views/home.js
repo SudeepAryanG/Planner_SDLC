@@ -60,7 +60,7 @@ array.push(data[keys[i]])
     let display=``;
     for(let i=0; i<array.length; i++){
         display+=`
-        <div id="task-box" >
+        <div id="task-box" class="draggable" draggable="true">
             <div class="left-button">
             ${array[i].taskheading}
             <button id="edit" onclick="edit(${array[i].taskid})" class="btn btn-success"><i class="fa fa-solid fa-pen"></i></button>&nbsp;
@@ -95,9 +95,9 @@ array.push(data[keys[i]])
   </div>
         `
     }
-    
     document.querySelector("#main-box").innerHTML=display;
     // window.location.reload()
+    drag()
    })
 
 function update(e){
@@ -175,3 +175,39 @@ document.querySelectorAll(".btn-warning").forEach((button)=>{
         button.classList.toggle("filter-selected");
     })
 })
+
+let droppedDiv;
+
+function drag() {
+    const draggables = document.querySelectorAll(".draggable");
+const containers = document.querySelectorAll(".containers");
+
+draggables.forEach((draggable) => {
+    console.log(draggable);
+  draggable.addEventListener("dragstart", () => {
+    draggable.classList.add("dragging");
+  });
+  draggable.addEventListener("dragend", () => {
+    draggable.classList.remove("dragging");
+    // fetch("/updateStatus",
+    // {
+    //     headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //     },
+    //     method: "POST",
+    //     body: JSON.stringify({taskid:e,mail:email})
+    // })
+    // .then((res)=>res.json())
+  });
+});
+containers.forEach((container) => {
+  container.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const draggable = document.querySelector(".dragging");
+    droppedDiv=container.id;
+    console.log("lll",droppedDiv)
+    container.appendChild(draggable);
+  });
+});
+}

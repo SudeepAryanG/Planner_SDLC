@@ -39,7 +39,7 @@
          <div class="notstarted "> 
             <div class="middle-title">Not Started 
               <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" >Sort By <i class=" fa fa-solid fa-filter"></i>
+                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#">Name</a></li>
@@ -47,53 +47,50 @@
                   <li><a href="#">End Date</a></li>
                 </ul>
               </div>
-              <!-- <div class="form-group">
-                  <button  class="btn btn-warning" ><i class=" fa fa-solid fa-filter"></i>
-                  </button>
-                  <select>
-                    <option>By Name</option>
-                    <option>By Start Date</option>
-                    <option>By End Date</option>
-                 
-                </select>
-            </div> -->
           </div>
-             <div id="main-box"> 
-              <!-- <div className="dropdown">
-                <button  class="btn btn-warning" ><i class=" fa fa-solid fa-filter"></i>
-                  <div className="dropdown-content">
-                    <a href="#">By Name</a>
-                    <a href="#">By Start Date</a>
-                    <a href="#">By End Date</a>
-                  <div>
-                </button>
-              </div> -->
-            <!-- <div id="task-box">
-              <div class="left-button">
-                Web Tips
-                <button class="btn btn-success"><i class="fa fa-solid fa-pen"></i></button>&nbsp;
-                <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-              </div>
-            </div> -->
+             <div class="containers" id="main-box">
             </div>
           </div> 
-          <div class="inprogress ">
+          <div class="inprogress">
             <div class="middle-title">In Progress
-              <button  class="btn btn-warning" ><i class=" fa fa-solid fa-filter"></i>
-                
-              </button>
+              <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Name</a></li>
+                  <li><a href="#">Start Date</a></li>
+                  <li><a href="#">End Date</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="containers" id="main-box">
+
             </div>
           </div>
           <div class="compleated">
             <div class="middle-title">Completed
-              <button  class="btn btn-warning" ><i class=" fa fa-solid fa-filter"></i></button>
+              <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Name</a></li>
+                  <li><a href="#">Start Date</a></li>
+                  <li><a href="#">End Date</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="containers" id="main-box">
+
             </div>
           </div>
       </div>
     </div>
     <div class="display-container flex">
       <div class="container">
-        <input type="text" name="" id="taskheading" value="Web Tech">
+        <div class="displayHeading">
+          Add Task
+        </div>
+        <input type="text" name="" id="taskheading" value="" placeholder="Task Heading">
         <div class="form-group">
           <label for="date">Start Date</label>
           <input class="form-control" placeholder="date"
@@ -113,7 +110,7 @@
           </datalist>
         </div> -->
         <div id="task-content">
-          <h3>Notes:-</h3>
+          <h3>Description:-</h3>
           <div >
             <input id="taskText"/>
           </div>
