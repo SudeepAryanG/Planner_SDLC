@@ -60,7 +60,7 @@ array.push(data[keys[i]])
     let display=``;
     for(let i=0; i<array.length; i++){
         display+=`
-        <div id="task-box" class="draggable" draggable="true">
+        <div id="${array[i].status}" class="draggable ${array[i].taskid}" draggable="true">
             <div class="left-button">
             ${array[i].taskheading}
             <button id="edit" onclick="edit(${array[i].taskid})" class="btn btn-success"><i class="fa fa-solid fa-pen"></i></button>&nbsp;
@@ -74,7 +74,7 @@ array.push(data[keys[i]])
             </div>
         </div>
 
-        <div id="popup" class="c${array[i].taskid}">
+        <div id="popup" class="${array[i].taskid}">
     <label>Project Name</label>
     <div>
 
@@ -94,9 +94,20 @@ array.push(data[keys[i]])
   </div>
   </div>
         `
+console.log(array[i].status );
+        var div =  document.querySelectorAll("#main-box")
+        div.forEach(e => {
+            if(e.className.split(" ")[1] === "ns" && array[i].status === "not-started")
+            document.querySelector(".ns").innerHTML=display
+            else if(e.className.split(" ")[1] === "ip" && array[i].status === "in-progress")
+            document.querySelector(".ip").innerHTML=display
+            else if(e.className.split(" ")[1] === "cc" &&  array[i].status === "completed")
+            document.querySelector(".cc").innerHTML=display
+        });    
+    //    console.log(array[i].status);
     }
-    document.querySelector("#main-box").innerHTML=display;
-    // window.location.reload()
+    // document.querySelector("#main-box").innerHTML=display
+   
     drag()
    })
 
@@ -177,37 +188,41 @@ document.querySelectorAll(".btn-warning").forEach((button)=>{
 })
 
 let droppedDiv;
-
+//Drag and Drop 
 function drag() {
     const draggables = document.querySelectorAll(".draggable");
 const containers = document.querySelectorAll(".containers");
 
 draggables.forEach((draggable) => {
-    console.log(draggable);
+    // console.log(draggable);
   draggable.addEventListener("dragstart", () => {
     draggable.classList.add("dragging");
   });
-  draggable.addEventListener("dragend", () => {
+  draggable.addEventListener("dragend", (e) => {
     draggable.classList.remove("dragging");
-    // fetch("/updateStatus",
-    // {
-    //     headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //     },
-    //     method: "POST",
-    //     body: JSON.stringify({taskid:e,mail:email})
-    // })
-    // .then((res)=>res.json())
+    var dd =droppedDiv.split(" ")[1]
+    var id = e.target.className.split(" ")[1]
+    fetch("/updateStatus",
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({taskid:id,div:dd,mail:email})
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        console.log(res);
+    })
   });
-});
+})
 containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
     const draggable = document.querySelector(".dragging");
-    droppedDiv=container.id;
-    console.log("lll",droppedDiv)
     container.appendChild(draggable);
+    droppedDiv=container.className
   });
 });
 }

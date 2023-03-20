@@ -79,10 +79,12 @@ app.post("/taskdetails",function(req,res){
         const email=Object.keys(existingData);
         if(email.includes(req.body.email)){
             existingData[req.body.email][req.body.taskid]=req.body
+            existingData[req.body.email][req.body.taskid].status="not-started"
         }
         else{
             existingData[req.body.email]={}
             existingData[req.body.email][req.body.taskid]=req.body
+           
         }
         console.log(existingData)
         fs.writeFile("userdetails.json",
@@ -119,8 +121,8 @@ updated.updatetask.email = req.body.mail
 fs.readFile("./userdetails.json",(err,data)=>{
     var userProject=JSON.parse(data);
     var projects=userProject[req.body.mail];
-    console.log(projects)
-    console.log(updated.updatetask);
+    // console.log(projects)
+    // console.log(updated.updatetask);
     var keys=Object.keys(projects);
     for(let key of keys){
         if(projects[key].taskid===updated.updatetask.taskid){
@@ -142,7 +144,7 @@ fs.readFile("./userdetails.json",(err,data)=>{
 app.post("/deleteTask",(req,res)=>{
     fs.readFile("./userdetails.json",(err,data)=>{
         var userProject=JSON.parse(data);
-        console.log(userProject[req.body.mail][req.body.taskid])
+        // console.log(userProject[req.body.mail][req.body.taskid])
         delete userProject[req.body.mail][req.body.taskid];
         fs.writeFile("./userdetails.json",
         JSON.stringify(userProject,null,2),
@@ -150,8 +152,34 @@ app.post("/deleteTask",(req,res)=>{
             if(!err)res.json({message:"Task Deleted Sucessfull"});
         })
     })
-    });
+});
 
+app.post("/updateStatus",(req,res)=>{
+    var id = req.body.taskid;
+    var mail=req.body.mail;
+    var progress = req.body.div;
+    console.log(req.body);
+    fs.readFile("./userdetails.json",(err, data)=>{
+        var user = JSON.parse(data);
+        var projects = user[mail]
+        var keys=Object.keys(projects);
+        for(let key of keys){
+            console.log(projects[key].taskid ,id);
+            if(projects[key].taskid===parseInt(id)){    
+                var div = progress === "ns"?"not-started":progress === "ip"? "in-progress":progress === "cc"?"completed":""
+                projects[key].status = div
+            }
+        }
+        console.log(user);
+        fs.writeFile("./userdetails.json",
+        JSON.stringify(user,null,2),
+        (err)=>{
+            if(!err)res.json({message:"Progress Updated"});
+        })
+       
+    })
+})
+    
 
 app.listen(port, () => {
     console.log(`App islistening on port ${port}`);
