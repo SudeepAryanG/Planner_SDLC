@@ -1,9 +1,6 @@
-// const { email } = require("glyphicons");
-
 console.log(email)
 
-
-function taskdetails(e){
+function taskdetails(){
     console.log("taskdetails");
     let taskid=Date.now();
     let task={taskid,email};
@@ -23,14 +20,14 @@ function taskdetails(e){
         body: JSON.stringify(task)
     })
     .then(function(res){ console.log(res)
-    location.reload();
+    // location.reload();
     })
     .catch(function(res){ console.log(res) })
 }
 
 
-document.querySelector("#taskdetails").addEventListener("click",function(e){
-    taskdetails(e)
+document.querySelector("#taskdetails").addEventListener("click",function(){
+    taskdetails()
 })
 
 document.querySelector("#taskText").addEventListener("input",()=>{
@@ -56,10 +53,12 @@ fetch("/showdetails",
     {
 array.push(data[keys[i]])
     }
-    console.log(array)
+   
     let display=``;
+    // document.querySelector("")
     for(let i=0; i<array.length; i++){
-        display+=`
+      
+        display=`
         <div id="${array[i].status}" class="draggable ${array[i].taskid}" draggable="true">
             <div class="left-button">
             ${array[i].taskheading}
@@ -74,7 +73,7 @@ array.push(data[keys[i]])
             </div>
         </div>
 
-        <div id="popup" class="${array[i].taskid}">
+        <div id="popup" class="c${array[i].taskid}">
     <label>Project Name</label>
     <div>
 
@@ -94,19 +93,24 @@ array.push(data[keys[i]])
   </div>
   </div>
         `
-console.log(array[i].status );
-        var div =  document.querySelectorAll("#main-box")
-        div.forEach(e => {
-            if(e.className.split(" ")[1] === "ns" && array[i].status === "not-started")
-            document.querySelector(".ns").innerHTML=display
-            else if(e.className.split(" ")[1] === "ip" && array[i].status === "in-progress")
-            document.querySelector(".ip").innerHTML=display
-            else if(e.className.split(" ")[1] === "cc" &&  array[i].status === "completed")
-            document.querySelector(".cc").innerHTML=display
-        });    
-    //    console.log(array[i].status);
+console.log(array[i].status === "not-started",array[i].status,"not-started");
+        if( array[i].status === "not-started")
+        {
+            console.log("notstarted");
+            document.querySelector(".ns").innerHTML+=display
+        }
+      
+        else if( array[i].status === "in-progress"){
+            console.log("inprogress");
+            document.querySelector(".ip").innerHTML+=display
+        }
+       
+        else if(  array[i].status === "completed")
+        {
+            console.log("completed");
+            document.querySelector(".cc").innerHTML+=display
+        }
     }
-    // document.querySelector("#main-box").innerHTML=display
    
     drag()
    })
@@ -115,13 +119,12 @@ function update(e){
     let popUpheading=document.getElementById("popUpheading"+e).value;
     let popstartDate=document.getElementById("popstartDate"+e).value
     let popendDate=document.getElementById("popendDate"+e).value;
-    console.log(popUpheading);
     let updatetask={};
     updatetask.taskid=e;
     updatetask.taskheading=popUpheading;
     updatetask.startDate=popstartDate;
     updatetask.endDate=popendDate;
-
+    updatetask.status = "";
     console.log(updatetask);
         fetch("/editTask",
         {
@@ -133,7 +136,7 @@ function update(e){
             body: JSON.stringify({updatetask,taskid:e,mail:email})
         })
     .then((res)=>res.json())
-    location.reload();
+    // location.reload();
 }
 
 function edit(e){
@@ -141,8 +144,8 @@ function edit(e){
     document.querySelectorAll("#popup").forEach(element=>{
         element.style.display="none"
     })
+    console.log(document.querySelector(".c"+e));
     document.querySelector(".c"+e).style.display="block";
-   
     let popUpheading=document.getElementById("popUpheading"+e).value;
     let popstartDate=document.getElementById("popstartDate"+e).value
     let popendDate=document.getElementById("popendDate"+e).value;
@@ -152,7 +155,6 @@ function edit(e){
     updatetask.taskheading=popUpheading;
     updatetask.startDate=popstartDate;
     updatetask.endDate=popendDate;
-
     console.log(updatetask);
         fetch("/editTask",
         {
@@ -168,17 +170,20 @@ function edit(e){
 }
 
 function deleteTask(e){
+   if(confirm("Do you want to delete this task"))
+   {
     fetch("/deleteTask",
-        {
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({taskid:e,mail:email})
-        })
-    .then((res)=>res.json())
-    location.reload();
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({taskid:e,mail:email})
+    })
+.then((res)=>res.json())
+// location.reload();
+   }
 }
 
 document.querySelectorAll(".btn-warning").forEach((button)=>{
@@ -188,7 +193,7 @@ document.querySelectorAll(".btn-warning").forEach((button)=>{
 })
 
 let droppedDiv;
-//Drag and Drop 
+//Drag and Drop
 function drag() {
     const draggables = document.querySelectorAll(".draggable");
 const containers = document.querySelectorAll(".containers");

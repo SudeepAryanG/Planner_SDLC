@@ -32,7 +32,7 @@ app.post("/register",function(req,res){
     let name=req.body.name;
     let email=req.body.email;
     let password=req.body.password;
-    console.log(req.body);
+    // console.log(req.body);
     fs.readFile("database.json",function(err,data){
         if(err){
             console.log(err)
@@ -57,14 +57,14 @@ app.post("/register",function(req,res){
 app.post("/login",function(req,res){
     let email= req.body.email;
     let password=req.body.password;
-    console.log(email,password);
+    // console.log(email,password);
     fs.readFile("database.json",function(err,data){
         if (err) {
             console.log(err);
         }
         const userData = JSON.parse(data);
         if(userData[email] && userData[email].password==password)res.render("home.ejs",{email})
-        else res.render("login.ejs",{valid:false , message:"Enter a Vaild Email address"})
+        else res.render("login.ejs",{valid:false , message:"Login with proper Credentials "})
     })
 });
 
@@ -86,7 +86,7 @@ app.post("/taskdetails",function(req,res){
             existingData[req.body.email][req.body.taskid]=req.body
            
         }
-        console.log(existingData)
+        // console.log(existingData)
         fs.writeFile("userdetails.json",
         JSON.stringify(existingData,null,2),
         function(err){
@@ -117,20 +117,22 @@ app.post("/showdetails",function(req,res){
 //EDIT
 app.post("/editTask",(req,res)=>{
 var updated = req.body
+console.log("update",req.body);
 updated.updatetask.email = req.body.mail
 fs.readFile("./userdetails.json",(err,data)=>{
     var userProject=JSON.parse(data);
     var projects=userProject[req.body.mail];
-    // console.log(projects)
-    // console.log(updated.updatetask);
+   
     var keys=Object.keys(projects);
     for(let key of keys){
-        if(projects[key].taskid===updated.updatetask.taskid){
+        if(parseInt(projects[key].taskid)===parseInt(updated.updatetask.taskid)){
+            updated.updatetask.status = projects[key].status
             delete projects[key];
             key=updated.taskid;
             projects[key]=updated.updatetask;
         }
     }
+    
     fs.writeFile("./userdetails.json",
     JSON.stringify(userProject,null,2),
     (err)=>{
@@ -154,23 +156,23 @@ app.post("/deleteTask",(req,res)=>{
     })
 });
 
+//Current Task
 app.post("/updateStatus",(req,res)=>{
     var id = req.body.taskid;
     var mail=req.body.mail;
     var progress = req.body.div;
-    console.log(req.body);
     fs.readFile("./userdetails.json",(err, data)=>{
         var user = JSON.parse(data);
         var projects = user[mail]
         var keys=Object.keys(projects);
         for(let key of keys){
-            console.log(projects[key].taskid ,id);
+            // console.log(projects[key].taskid ,id);
             if(projects[key].taskid===parseInt(id)){    
                 var div = progress === "ns"?"not-started":progress === "ip"? "in-progress":progress === "cc"?"completed":""
                 projects[key].status = div
             }
         }
-        console.log(user);
+        // console.log(user);
         fs.writeFile("./userdetails.json",
         JSON.stringify(user,null,2),
         (err)=>{
@@ -184,3 +186,5 @@ app.post("/updateStatus",(req,res)=>{
 app.listen(port, () => {
     console.log(`App islistening on port ${port}`);
 });
+
+

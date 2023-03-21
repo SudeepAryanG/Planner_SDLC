@@ -1,14 +1,4 @@
 {
-  "undefined": {},
-  "1678959660378": {
-    "id": "1678959660378"
-  },
-  "s@s": {
-    "password": [
-      "a",
-      "a"
-    ]
-  },
   "sudeeparyan.g@solitontech.com": {
     "name": "Sudeep",
     "password": "abcd"
@@ -28,5 +18,13 @@
   "ash@ash.com": {
     "name": "Ash",
     "password": "ash"
+  },
+  "ganesh@nithin": {
+    "name": "Ganesh",
+    "password": "g"
+  },
+  "manu@gmail.com": {
+    "name": "Manu",
+    "password": "12345"
   }
 }
