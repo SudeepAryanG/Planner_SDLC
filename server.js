@@ -5,6 +5,7 @@ let port = 7800;
 const fs=require('fs');
 
 const bodyParser = require('body-parser');
+const { log } = require('console');
 app.use(bodyParser.urlencoded({limit: '5000mb', extended: true, parameterLimit: 100000000000}));
 
 app.use(express.json())
@@ -103,13 +104,72 @@ app.post("/taskdetails",function(req,res){
 })
 
 app.post("/showdetails",function(req,res){
+    var sort= req.body.sortType
+    var container = req.body.container
+    console.log(sort,container);
     fs.readFile("./userdetails.json",(err,data)=>{
         if(!err){
             let userproject=JSON.parse(data);
-            let userid=Object.keys(userproject)
-            if(userid.includes(req.body.mailId)){
-                res.json(userproject[req.body.mailId])
+            var project = userproject[req.body.mailId]
+            let userid=Object.keys(project)
+            var arrays = []
+            var array=[]
+            for (let i = 0; i < userid.length; i++) {
+               arrays.push(project[userid[i]])
             }
+            // console.log(array);
+            if(container != "containers")
+            {
+               for (let i = 0; i < arrays.length; i++) {
+                console.log(arrays[i].status, container);
+           if(arrays[i].status === container)
+           {
+            array.push(arrays[i]);
+           }
+               
+              }
+            }
+            console.log("conwsdfgvr",array);
+            if(sort!=undefined)
+            {
+                
+                if(sort === "name")
+                {
+                    array.sort((a,b)=>{
+                        return a.taskheading.localeCompare(b.taskheading)
+                    })
+                    
+                    res.json(array);
+                }
+                if(sort === "sDate")
+                {
+                    array.sort((a,b)=>{
+                        console.log(a.startDate);
+                        var sDate = new Date(a.startDate).getTime();
+                        var eDate = new Date(b.startDate).getTime();
+                        return sDate-eDate
+                    })
+                   
+                    res.json(array);
+                }
+                if(sort === "eDate")
+                {
+                    array.sort((a,b)=>{
+                        var sDate = new Date(a.endDate).getTime();
+                        var eDate = new Date(b.endDate).getTime();
+                        return sDate-eDate
+                    })
+                    res.json(array);
+                }
+    
+            }
+            else
+            {
+                console.log("yes");
+                    res.json(arrays)
+            }
+           
+
         }
 
     })

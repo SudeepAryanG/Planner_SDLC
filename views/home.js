@@ -1,7 +1,6 @@
 console.log(email)
 
 function taskdetails(){
-    console.log("taskdetails");
     let taskid=Date.now();
     let task={taskid,email};
     ["taskheading","startDate","endDate"].forEach(id => {
@@ -9,7 +8,6 @@ function taskdetails(){
         task[id]=document.querySelector("#"+id).value;
         
     });
-console.log(task);
     fetch("/taskdetails",
     {
         headers: {
@@ -25,6 +23,22 @@ console.log(task);
     .catch(function(res){ console.log(res) })
 }
 
+function sortFun(type,container){
+    fetch("/showdetails",
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({"mailId":email,sortType:type,container:container})
+    })
+  .then((res)=>res.json())
+  .then((data)=>{
+    display(data,container)
+  })
+    .catch(function(res){ console.log(res) })
+}
 
 document.querySelector("#taskdetails").addEventListener("click",function(){
     taskdetails()
@@ -32,32 +46,20 @@ document.querySelector("#taskdetails").addEventListener("click",function(){
 
 document.querySelector("#taskText").addEventListener("input",()=>{
     document.querySelector("#taskText").minHeight=document.querySelector("#taskText").scrollHeight+"px";
-    console.log(document.querySelector("#taskText").scrollHeight)
 })
 
-
-fetch("/showdetails",
-    {
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({"mailId":email})
-    })
-   .then((res)=>res.json())
-   .then((data)=>{
-    var array =[]
-    var keys = Object.keys(data)
-    for(var i=0;i<keys.length;i++)
-    {
-array.push(data[keys[i]])
-    }
-   
+function display(array,container) {
+    var div;
+    if(container === "")
+    div = "containers"
+    else
+    div = container === "not-started"?"ns":container === "in-progress"?"ip":container === "completed"?"cc":""
     let display=``;
-    // document.querySelector("")
+    console.log( document.querySelector(`.${div}`));
+    document.querySelectorAll(`.${div}`).forEach(e => {
+        e.innerHTML="";
+    });
     for(let i=0; i<array.length; i++){
-      
         display=`
         <div id="${array[i].status}" class="draggable ${array[i].taskid}" draggable="true">
             <div class="left-button">
@@ -93,25 +95,36 @@ array.push(data[keys[i]])
   </div>
   </div>
         `
-console.log(array[i].status === "not-started",array[i].status,"not-started");
+        // console.log(display);
         if( array[i].status === "not-started")
         {
-            console.log("notstarted");
             document.querySelector(".ns").innerHTML+=display
         }
       
         else if( array[i].status === "in-progress"){
-            console.log("inprogress");
             document.querySelector(".ip").innerHTML+=display
         }
        
         else if(  array[i].status === "completed")
         {
-            console.log("completed");
             document.querySelector(".cc").innerHTML+=display
         }
     }
-   
+}
+
+fetch("/showdetails",
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({"mailId":email,sortType:undefined,container:"containers"})
+    })
+   .then((res)=>res.json())
+   .then((data)=>{
+
+    display(data,"")
     drag()
    })
 
@@ -125,7 +138,6 @@ function update(e){
     updatetask.startDate=popstartDate;
     updatetask.endDate=popendDate;
     updatetask.status = "";
-    console.log(updatetask);
         fetch("/editTask",
         {
             headers: {
@@ -140,22 +152,18 @@ function update(e){
 }
 
 function edit(e){
-    console.log(e);
     document.querySelectorAll("#popup").forEach(element=>{
         element.style.display="none"
     })
-    console.log(document.querySelector(".c"+e));
     document.querySelector(".c"+e).style.display="block";
     let popUpheading=document.getElementById("popUpheading"+e).value;
     let popstartDate=document.getElementById("popstartDate"+e).value
     let popendDate=document.getElementById("popendDate"+e).value;
-    console.log(popUpheading);
     let updatetask={};
     updatetask.taskid=e;
     updatetask.taskheading=popUpheading;
     updatetask.startDate=popstartDate;
     updatetask.endDate=popendDate;
-    console.log(updatetask);
         fetch("/editTask",
         {
             headers: {
@@ -180,8 +188,8 @@ function deleteTask(e){
         method: "POST",
         body: JSON.stringify({taskid:e,mail:email})
     })
-.then((res)=>res.json())
-location.reload();
+    .then((res)=>res.json())
+    location.reload();
    }
 }
 
@@ -191,42 +199,41 @@ document.querySelectorAll(".btn-warning").forEach((button)=>{
     })
 })
 
-let droppedDiv;
 //Drag and Drop
+
+let droppedDiv;
 function drag() {
     const draggables = document.querySelectorAll(".draggable");
-const containers = document.querySelectorAll(".containers");
-
-draggables.forEach((draggable) => {
-    // console.log(draggable);
-  draggable.addEventListener("dragstart", () => {
-    draggable.classList.add("dragging");
-  });
-  draggable.addEventListener("dragend", (e) => {
-    draggable.classList.remove("dragging");
-    var dd =droppedDiv.split(" ")[1]
-    var id = e.target.className.split(" ")[1]
-    fetch("/updateStatus",
-    {
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({taskid:id,div:dd,mail:email})
+    const containers = document.querySelectorAll(".containers");
+    draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", () => {
+        draggable.classList.add("dragging");
+    });
+    draggable.addEventListener("dragend", (e) => {
+        draggable.classList.remove("dragging");
+        var dd =droppedDiv.split(" ")[1]
+        var id = e.target.className.split(" ")[1]
+        fetch("/updateStatus",
+        {
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({taskid:id,div:dd,mail:email})
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+        })
+    });
     })
-    .then((res)=>res.json())
-    .then((res)=>{
-        console.log(res);
-    })
-  });
-})
-containers.forEach((container) => {
-  container.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    const draggable = document.querySelector(".dragging");
-    container.appendChild(draggable);
-    droppedDiv=container.className
-  });
-});
+    containers.forEach((container) => {
+    container.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const draggable = document.querySelector(".dragging");
+        container.appendChild(draggable);
+        droppedDiv=container.className
+    });
+    });
 }

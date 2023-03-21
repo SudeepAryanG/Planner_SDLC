@@ -42,9 +42,9 @@
                 <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Name</a></li>
-                  <li><a href="#">Start Date</a></li>
-                  <li><a href="#">End Date</a></li>
+                  <li><a onclick="sortFun('name','not-started')" href="#">Name</a></li>
+                  <li><a onclick="sortFun('sDate','not-started')" href="#">Start Date</a></li>
+                  <li><a onclick="sortFun('eDate','not-started')" href="#">End Date</a></li>
                 </ul>
               </div>
           </div>
@@ -57,14 +57,13 @@
                 <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Name</a></li>
-                  <li><a href="#">Start Date</a></li>
-                  <li><a href="#">End Date</a></li>
+                  <li><a onclick="sortFun('name','in-progress')" href="#">Name</a></li>
+                  <li><a onclick="sortFun('sDate','in-progress')" href="#">Start Date</a></li>
+                  <li><a onclick="sortFun('eDate','in-progress')" href="#">End Date</a></li>
                 </ul>
               </div>
             </div>
             <div class="containers ip" id="main-box">
-
             </div>
           </div>
           <div class="compleated">
@@ -73,9 +72,9 @@
                 <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Name</a></li>
-                  <li><a href="#">Start Date</a></li>
-                  <li><a href="#">End Date</a></li>
+                  <li><a onclick="sortFun('name','completed')" href="#">Name</a></li>
+                  <li><a onclick="sortFun('sDate','completed')" href="#">Start Date</a></li>
+                  <li><a onclick="sortFun('eDate','completed')" href="#">End Date</a></li>
                 </ul>
               </div>
             </div>

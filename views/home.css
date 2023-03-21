@@ -163,6 +163,12 @@ h3{
     margin-bottom: 1%;
     /* background-color:  rgba(255,255,255,0.2); */
 }
+#taskdetails{
+    padding: 2%;
+    position: relative;
+    left: 4%;
+    top: 1%;
+}
 
 .btn-warning+select{
     display: none;
