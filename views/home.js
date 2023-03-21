@@ -119,7 +119,7 @@ fetch("/showdetails",
         'Content-Type': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({"mailId":email,sortType:undefined,container:"containers"})
+        body: JSON.stringify({mailId:email,sortType:undefined,container:"containers"})
     })
    .then((res)=>res.json())
    .then((data)=>{
