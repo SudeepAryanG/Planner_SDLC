@@ -9,7 +9,7 @@ function taskdetails(){
         task[id]=document.querySelector("#"+id).value;
         
     });
-    console.log(task);
+console.log(task);
     fetch("/taskdetails",
     {
         headers: {
@@ -20,7 +20,7 @@ function taskdetails(){
         body: JSON.stringify(task)
     })
     .then(function(res){ console.log(res)
-    // location.reload();
+    location.reload();
     })
     .catch(function(res){ console.log(res) })
 }
@@ -136,7 +136,7 @@ function update(e){
             body: JSON.stringify({updatetask,taskid:e,mail:email})
         })
     .then((res)=>res.json())
-    // location.reload();
+    location.reload();
 }
 
 function edit(e){
@@ -166,7 +166,6 @@ function edit(e){
             body: JSON.stringify({taskid:e,mail:email})
         })
     .then((res)=>res.json())
-    // location.reload();
 }
 
 function deleteTask(e){
@@ -182,7 +181,7 @@ function deleteTask(e){
         body: JSON.stringify({taskid:e,mail:email})
     })
 .then((res)=>res.json())
-// location.reload();
+location.reload();
    }
 }
 

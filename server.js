@@ -84,6 +84,7 @@ app.post("/taskdetails",function(req,res){
         else{
             existingData[req.body.email]={}
             existingData[req.body.email][req.body.taskid]=req.body
+            existingData[req.body.email][req.body.taskid].status="not-started"
            
         }
         // console.log(existingData)

@@ -1,30 +1,6 @@
 {
-  "sudeeparyan.g@solitontech.com": {
-    "name": "Sudeep",
-    "password": "abcd"
-  },
-  "indar@gmail.com": {
-    "name": "Indar",
-    "password": "12345678"
-  },
-  "a@a": {
-    "name": "A",
-    "password": "a"
-  },
-  "reema@reena": {
-    "name": "Reema",
-    "password": "reemareena"
-  },
-  "ash@ash.com": {
-    "name": "Ash",
-    "password": "ash"
-  },
-  "ganesh@nithin": {
-    "name": "Ganesh",
-    "password": "g"
-  },
-  "manu@gmail.com": {
-    "name": "Manu",
-    "password": "12345"
+  "test@test": {
+    "name": "Test",
+    "password": "test"
   }
 }
