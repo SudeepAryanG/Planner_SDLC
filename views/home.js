@@ -42,6 +42,7 @@ function sortFun(type,container){
   .then((res)=>res.json())
   .then((data)=>{
     display(data,container)
+    drag();
   })
     .catch(function(res){ console.log(res) })
     

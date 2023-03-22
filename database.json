@@ -1,34 +1,6 @@
 {
-  "test1@gmail.com": {
-    "name": "Test1",
-    "password": "test"
-  },
-  "sug@sug.com": {
-    "name": "Sug",
-    "password": "sug"
-  },
-  "ash@sug.com": {
-    "name": "Ash",
-    "password": "ash"
-  },
-  "s@s": {
-    "name": "S",
-    "password": "s"
-  },
   "a@a": {
     "name": "A",
     "password": "a"
-  },
-  "sudeeparyan.g@solitontech.com": {
-    "name": "Sudeep",
-    "password": "abcd"
-  },
-  "deepika@gmail.com": {
-    "name": "Deepika",
-    "password": "deepika@123"
-  },
-  "l@l": {
-    "name": "L",
-    "password": "l"
   }
 }

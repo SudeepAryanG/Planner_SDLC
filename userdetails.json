@@ -1,233 +1,36 @@
 {
-  "test1@gmail.com": {},
-  "sug@sug.com": {
-    "1679404357719": {
-      "taskid": 1679404357719,
-      "taskheading": "rftgyuhj",
-      "startDate": "2023-03-24",
-      "endDate": "2023-03-08",
-      "status": "completed",
-      "email": "sug@sug.com"
-    },
-    "1679404407699": {
-      "taskid": 1679404407699,
-      "taskheading": "tyubimkldrtgyu",
-      "startDate": "2023-03-16",
-      "endDate": "2023-03-23",
-      "status": "in-progress",
-      "email": "sug@sug.com"
-    },
-    "1679404529500": {
-      "taskid": 1679404529500,
-      "taskheading": "erjinklblvyi",
-      "startDate": "2023-03-09",
-      "endDate": "2023-03-22",
-      "status": "not-started",
-      "email": "sug@sug.com"
-    }
-  },
-  "ash@sug.com": {
-    "1679404912929": {
-      "taskid": 1679404912929,
-      "email": "ash@sug.com",
-      "taskheading": "y7iiuuh",
-      "startDate": "",
-      "endDate": "",
-      "status": "not-started"
-    },
-    "1679404972778": {
-      "taskid": 1679404972778,
-      "taskheading": "jhkhkjkhbjhkb",
-      "startDate": "",
-      "endDate": "",
-      "status": "not-started",
-      "email": "ash@sug.com"
-    },
-    "1679405248575": {
-      "taskid": 1679405248575,
-      "email": "ash@sug.com",
-      "taskheading": "zxC",
-      "startDate": "2023-03-10",
-      "endDate": "2023-03-09",
-      "status": "not-started"
-    },
-    "1679407093988": {
-      "taskid": 1679407093988,
-      "email": "ash@sug.com",
-      "taskheading": "SD",
-      "startDate": "",
-      "endDate": "",
-      "status": "not-started"
-    },
-    "1679407115395": {
-      "taskid": 1679407115395,
-      "email": "ash@sug.com",
-      "taskheading": "",
-      "startDate": "",
-      "endDate": "",
-      "status": "not-started"
-    }
-  },
-  "s@s": {
-    "1679407355944": {
-      "taskid": 1679407355944,
-      "taskheading": "Sudeep",
-      "startDate": "2023-03-07",
-      "endDate": "2023-03-21",
-      "status": "in-progress",
-      "email": "s@s"
-    },
-    "1679457359263": {
-      "taskid": 1679457359263,
-      "email": "s@s",
-      "taskheading": "a",
-      "startDate": "2023-03-01",
-      "endDate": "2023-03-01",
-      "status": "completed"
-    },
-    "1679457382807": {
-      "taskid": 1679457382807,
-      "email": "s@s",
-      "taskheading": "z",
-      "startDate": "2023-03-31",
-      "endDate": "2023-03-31",
-      "status": "completed"
-    },
-    "1679474849868": {
-      "taskid": 1679474849868,
-      "email": "s@s",
-      "taskheading": "s",
-      "startDate": "2023-03-16",
-      "endDate": "2023-03-17",
-      "status": "not-started"
-    },
-    "1679457368359": {
-      "taskid": 1679457368359,
-      "taskheading": "bxxvcbvn",
-      "startDate": "2023-03-15",
-      "endDate": "2023-03-15",
-      "status": "not-started",
-      "email": "s@s"
-    }
-  },
   "a@a": {
-    "1679460688607": {
-      "taskid": 1679460688607,
+    "1679477726263": {
+      "taskid": 1679477726263,
       "email": "a@a",
-      "taskheading": "z",
-      "startDate": "",
-      "endDate": "",
+      "taskheading": "fg",
+      "startDate": "2023-03-03",
+      "endDate": "2023-03-22",
       "status": "in-progress"
     },
-    "1679460691191": {
-      "taskid": 1679460691191,
+    "1679477746644": {
+      "taskid": 1679477746644,
       "email": "a@a",
-      "taskheading": "d",
-      "startDate": "",
-      "endDate": "",
+      "taskheading": "a",
+      "startDate": "2023-03-30",
+      "endDate": "2023-03-09",
       "status": "in-progress"
     },
-    "1679458404839": {
-      "taskid": 1679458404839,
-      "taskheading": "a",
-      "startDate": "",
-      "endDate": "",
-      "status": "not-started",
-      "email": "a@a"
-    },
-    "1679460693167": {
-      "taskid": 1679460693167,
-      "taskheading": "Sudeep",
-      "startDate": "",
-      "endDate": "",
-      "status": "in-progress",
-      "email": "a@a"
-    }
-  },
-  "sudeeparyan.g@solitontech.com": {
-    "1679466099196": {
-      "taskid": 1679466099196,
-      "taskheading": "z",
-      "startDate": "2023-03-31",
-      "endDate": "2023-03-31",
-      "status": "not-started",
-      "email": "sudeeparyan.g@solitontech.com"
-    },
-    "1679466083940": {
-      "taskid": 1679466083940,
-      "taskheading": "a",
-      "startDate": "2023-03-01",
+    "1679477653310": {
+      "taskid": 1679477653310,
+      "taskheading": "task-1",
+      "startDate": "2023-03-03",
       "endDate": "2023-03-01",
       "status": "in-progress",
-      "email": "sudeeparyan.g@solitontech.com"
+      "email": "a@a"
     },
-    "1679466092813": {
-      "taskid": 1679466092813,
-      "taskheading": "b",
-      "startDate": "2023-03-03",
-      "endDate": "2023-03-03",
-      "status": "not-started",
-      "email": "sudeeparyan.g@solitontech.com"
-    },
-    "1679467264123": {
-      "taskid": 1679467264123,
-      "email": "sudeeparyan.g@solitontech.com",
-      "taskheading": "ganesh",
-      "startDate": "",
-      "endDate": "",
-      "status": "completed"
-    },
-    "1679469586326": {
-      "taskid": 1679469586326,
-      "email": "sudeeparyan.g@solitontech.com",
-      "taskheading": "jj",
-      "startDate": "",
-      "endDate": "",
-      "status": "not-started"
-    },
-    "1679470188308": {
-      "taskid": 1679470188308,
-      "email": "sudeeparyan.g@solitontech.com",
-      "taskheading": "wdfg",
-      "startDate": "2023-03-24",
-      "endDate": "2023-03-25",
-      "status": "not-started"
-    }
-  },
-  "deepika@gmail.com": {
-    "1679473736336": {
-      "taskid": 1679473736336,
-      "email": "deepika@gmail.com",
-      "taskheading": "wefgh",
-      "startDate": "2023-03-23",
-      "endDate": "2023-03-23",
-      "status": "not-started"
-    },
-    "1679473747102": {
-      "taskid": 1679473747102,
-      "email": "deepika@gmail.com",
-      "taskheading": "asdfgh",
-      "startDate": "2023-03-24",
-      "endDate": "2023-03-28",
-      "status": "not-started"
-    },
-    "1679473770567": {
-      "taskid": 1679473770567,
-      "email": "deepika@gmail.com",
-      "taskheading": "wefgh",
-      "startDate": "2023-03-23",
-      "endDate": "2023-04-01",
-      "status": "not-started"
-    }
-  },
-  "l@l": {
-    "1679474532947": {
-      "taskid": 1679474532947,
-      "email": "l@l",
-      "taskheading": "a",
-      "startDate": "2023-03-16",
-      "endDate": "2023-03-31",
-      "status": "not-started"
+    "1679477737207": {
+      "taskid": 1679477737207,
+      "taskheading": "task-2",
+      "startDate": "2023-03-31",
+      "endDate": "2023-03-10",
+      "status": "in-progress",
+      "email": "a@a"
     }
   }
 }

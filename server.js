@@ -232,7 +232,6 @@ fs.readFile("./userdetails.json",(err,data)=>{
 app.post("/deleteTask",(req,res)=>{
     fs.readFile("./userdetails.json",(err,data)=>{
         var userProject=JSON.parse(data);
-        // console.log(userProject[req.body.mail][req.body.taskid])
         delete userProject[req.body.mail][req.body.taskid];
         fs.writeFile("./userdetails.json",
         JSON.stringify(userProject,null,2),
