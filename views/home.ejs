@@ -149,5 +149,9 @@
     let email = '<%-email%>'
   </script>
   <script src="home.js"></script>
+  <script type="text/javascript">
+    function disableBack() { window.history.forward(); }
+    window.onunload = disableBack();
+</script>
 </body>
 </html>

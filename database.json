@@ -12,7 +12,7 @@
     "password": "ash"
   },
   "s@s": {
-    "name": "Sudeep",
+    "name": "S",
     "password": "s"
   },
   "a@a": {
@@ -22,5 +22,13 @@
   "sudeeparyan.g@solitontech.com": {
     "name": "Sudeep",
     "password": "abcd"
+  },
+  "deepika@gmail.com": {
+    "name": "Deepika",
+    "password": "deepika@123"
+  },
+  "l@l": {
+    "name": "L",
+    "password": "l"
   }
 }
