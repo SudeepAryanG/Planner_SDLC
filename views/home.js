@@ -17,8 +17,14 @@ function taskdetails(){
         method: "POST",
         body: JSON.stringify(task)
     })
-    .then(function(res){ console.log(res)
-    location.reload();
+    .then((data)=>data.json())
+    .then((res)=>
+    {
+    console.log(res);
+    if(res.error)
+        alert(res.error)
+    if(res.message)
+        window.location.reload()
     })
     .catch(function(res){ console.log(res) })
 }
@@ -38,7 +44,10 @@ function sortFun(type,container){
     display(data,container)
   })
     .catch(function(res){ console.log(res) })
+    
 }
+
+
 
 document.querySelector("#taskdetails").addEventListener("click",function(){
     taskdetails()
@@ -73,27 +82,27 @@ function display(array,container) {
             <div class="dates">
             End Date ${array[i].endDate}
             </div>
+        </div>  
+
+        <div id="popup" class="c${array[i].taskid}" >
+        <button class="btn btn-danger" onclick="closeForm()" id="closeBtn"><i class="fa-sharp fa-solid fa-xmark" style="color: white;"></i></button>
+            <div id="editpop"><u>Edit Task </u></div>
+            <label>Project Name</label>
+            <div>    
+            <input type="text" name="" id="popUpheading${array[i].taskid}" value="${array[i].taskheading}">
+            <div class="form-group">
+            <label for="date">Start Date</label>
+            <input class="form-control" placeholder="date" value="${array[i].startDate}"
+            name="date" id="popstartDate${array[i].taskid}" type="date"/>
+            </div>
+            <div class="form-group">
+            <label for="date">End Date</label>
+            <input class="form-control" placeholder="date" value="${array[i].endDate}"
+            name="date" id="popendDate${array[i].taskid}" type="date"/>
+            </div>
+            <button class="btn btn-success" onclick="update(${array[i].taskid})" >Update</button>
         </div>
-
-        <div id="popup" class="c${array[i].taskid}">
-    <label>Project Name</label>
-    <div>
-
-    
-    <input type="text" name="" id="popUpheading${array[i].taskid}" value="${array[i].taskheading}">
-    <div class="form-group">
-      <label for="date">Start Date</label>
-      <input class="form-control" placeholder="date" value="${array[i].startDate}"
-      name="date" id="popstartDate${array[i].taskid}" type="date"/>
-    </div>
-    <div class="form-group">
-      <label for="date">End Date</label>
-      <input class="form-control" placeholder="date" value="${array[i].endDate}"
-      name="date" id="popendDate${array[i].taskid}" type="date"/>
-    </div>
-    <button class="btn btn-success" onclick="update(${array[i].taskid})" >Update</button>
-  </div>
-  </div>
+        </div>
         `
         // console.log(display);
         if( array[i].status === "not-started")
@@ -127,6 +136,10 @@ fetch("/showdetails",
     display(data,"")
     drag()
    })
+
+   function closeForm() {
+    document.querySelector("#popup").style.display = "none"
+   }
 
 function update(e){
     let popUpheading=document.getElementById("popUpheading"+e).value;
@@ -236,4 +249,27 @@ function drag() {
         droppedDiv=container.className
     });
     });
+}
+
+function searchTask()
+{
+    var search = document.querySelector("#searchItem").value;
+    fetch("/search",
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({search:search,mail:email})
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        if(!res.error)
+        display(res,"")
+        else {
+        alert(res.error)
+        document.querySelector("#searchItem").value = "";
+        }
+    })
 }

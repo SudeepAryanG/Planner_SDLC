@@ -16,109 +16,115 @@
     <link rel="stylesheet" href="home.css" />
 </head>
 <body>
-  
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <span><img src="./img/icon.png" height="40px" width="40px"/></span>  Timely
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-          <li><a href="./login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        </ul>
-      </div>
-    </nav>
-  <div class="main-container">
-    <div class="task-container flex">
-      <div class="task-list left-button">
-        Task List 
-          &nbsp;
-          <button class="btn btn-info"><i class="fa fa-solid fa-calendar-days"></i></button>
-      </div>
-      <div class="middile-container">
-         <div class="notstarted "> 
-            <div class="middle-title">Not Started 
-              <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a onclick="sortFun('name','not-started')" href="#">Name</a></li>
-                  <li><a onclick="sortFun('sDate','not-started')" href="#">Start Date</a></li>
-                  <li><a onclick="sortFun('eDate','not-started')" href="#">End Date</a></li>
-                </ul>
-              </div>
-          </div>
-             <div class="containers ns" id="main-box">
-            </div>
-          </div> 
-          <div class="inprogress">
-            <div class="middle-title">In Progress
-              <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a onclick="sortFun('name','in-progress')" href="#">Name</a></li>
-                  <li><a onclick="sortFun('sDate','in-progress')" href="#">Start Date</a></li>
-                  <li><a onclick="sortFun('eDate','in-progress')" href="#">End Date</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="containers ip" id="main-box">
-            </div>
-          </div>
-          <div class="compleated">
-            <div class="middle-title">Completed
-              <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><i title="Sort By" class=" fa fa-solid fa-filter"></i>
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a onclick="sortFun('name','completed')" href="#">Name</a></li>
-                  <li><a onclick="sortFun('sDate','completed')" href="#">Start Date</a></li>
-                  <li><a onclick="sortFun('eDate','completed')" href="#">End Date</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="containers cc" id="main-box">
-
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="display-container flex">
-      <div class="container">
-        <div class="displayHeading">
-          Add Task
-        </div>
-        <input type="text" name="" id="taskheading" value="" placeholder="Task Heading">
-        <div class="form-group">
-          <label for="date">Start Date</label>
-          <input class="form-control" placeholder="date"
-          name="date" id="startDate" type="date"/>
-        </div>
-        <div class="form-group">
-          <label for="date">End Date</label>
-          <input class="form-control" placeholder="date"
-          name="date" id="endDate" type="date"/>
-        </div>
-        <!-- <div class="dropdown">
-          <input id="statusInput" type="text" list="input" data-toggle="dropdown" />
-          <datalist id="input" >
-            <option >Not Started</option>
-            <option>In Progress</option>
-            <option>Started</option>
-          </datalist>
-        </div> -->
-        <div id="task-content">
-          <h3>Description:-</h3>
-          <div >
-            <input id="taskText"/>
-          </div>
-        </div>
+<div >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <span><img src="./img/icon.png" height="40px" width="40px"/></span>  Timely  <span id="userName"><%= name %>'s Planner</span> 
         
       </div>
-      <button id="taskdetails"class="btn btn-info" >Submit</button>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+        <li><a href="./login"><span id="logout"class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="main-container">
+  <div class="task-container flex">
+    <div class="task-list left-button">
+      <h2>Task List </h2>
+        &nbsp;          
+        <input id="searchItem" type="text" /><button onclick="searchTask()" class="btn btn-info"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div class="middile-container">
+    
+       <div class="notstarted "> 
+          <div class="middle-title">Not Started 
+            <div class="dropdown">
+              <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><img title="Sort By" src="./img/filter.svg" />
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a onclick="sortFun('name','not-started')" href="#">Name</a></li>
+                <li><a onclick="sortFun('sDate','not-started')" href="#">Start Date</a></li>
+                <li><a onclick="sortFun('eDate','not-started')" href="#">End Date</a></li>
+              </ul>
+            </div>
+        </div>
+           <div class="containers ns" id="main-box">
+          </div>
+        </div> 
+        <div class="inprogress">
+          <div class="middle-title">In Progress
+            <div class="dropdown">
+              <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><img title="Sort By" src="./img/filter.svg" />
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a onclick="sortFun('name','in-progress')" href="#">Name</a></li>
+                <li><a onclick="sortFun('sDate','in-progress')" href="#">Start Date</a></li>
+                <li><a onclick="sortFun('eDate','in-progress')" href="#">End Date</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="containers ip" id="main-box">
+          </div>
+        </div>
+        <div class="compleated">
+          <div class="middle-title">Completed
+            <div class="dropdown">
+              <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" ><img title="Sort By" src="./img/filter.svg" />
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a onclick="sortFun('name','completed')" href="#">Name</a></li>
+                <li><a onclick="sortFun('sDate','completed')" href="#">Start Date</a></li>
+                <li><a onclick="sortFun('eDate','completed')" href="#">End Date</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="containers cc" id="main-box">
+
+          </div>
+        </div>
     </div>
   </div>
+  <div class="display-container flex">
+    
+    <div class="container">
+      <div class="displayHeading">
+        Add Task
+      </div>
+      <input type="text" name="" id="taskheading" value="" placeholder="Task Heading"  >
+      <div class="form-group">
+        <label for="date">Start Date</label>
+        <input class="form-control" placeholder="date"
+        name="date" id="startDate" type="date" />
+      </div>
+      <div class="form-group">
+        <label for="date">End Date</label>
+        <input class="form-control" placeholder="date"
+        name="date" id="endDate" type="date"/>
+      </div>
+      <!-- <div class="dropdown">
+        <input id="statusInput" type="text" list="input" data-toggle="dropdown" />
+        <datalist id="input" >
+          <option >Not Started</option>
+          <option>In Progress</option>
+          <option>Started</option>
+        </datalist>
+      </div> -->
+      <div id="task-content">
+        <h3>Description:-</h3>
+        <div >
+          <input id="taskText"/>
+        </div>
+      </div>
+      
+    </div>
+    <button id="taskdetails"class="btn btn-info" >Submit</button>
+  
+  </div>
+</div>
+</div>
+
 
   <!-- <div id="popup">
     <label>Project Name</label>

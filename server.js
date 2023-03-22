@@ -29,11 +29,40 @@ app.get("/register",function(req,res){
     res.render("register.ejs")
 })
 
+app.post("/search",function(req,res){
+   var item = req.body.search
+   var present = true
+   fs.readFile("userdetails.json", (err,data) =>{
+    if(!err)
+    {
+        var projects = JSON.parse(data)
+        var userPrj = projects[req.body.mail]
+        var userid = Object.keys(userPrj);
+       
+        var array=[]
+        var arrays = []
+        for (let i = 0; i < userid.length; i++) {
+            array.push(userPrj[userid[i]])
+        }
+        for (let i = 0; i < array.length; i++) {
+       if(array[i].taskheading === item)
+       {
+        arrays.push(array[i]);
+        present = false
+       }                   
+        }
+       if(present)
+       res.json({error:"Task Not Found"})
+       else
+       res.json(arrays)
+    }
+   })
+})
+
 app.post("/register",function(req,res){
     let name=req.body.name;
     let email=req.body.email;
     let password=req.body.password;
-    // console.log(req.body);
     fs.readFile("database.json",function(err,data){
         if(err){
             console.log(err)
@@ -54,24 +83,25 @@ app.post("/register",function(req,res){
     res.redirect("/login");
 })
 
-
 app.post("/login",function(req,res){
     let email= req.body.email;
     let password=req.body.password;
-    // console.log(email,password);
     fs.readFile("database.json",function(err,data){
         if (err) {
             console.log(err);
         }
         const userData = JSON.parse(data);
-        if(userData[email] && userData[email].password==password)res.render("home.ejs",{email})
+        if(userData[email] && userData[email].password==password)res.render("home.ejs",{email,name:userData[email].name})
         else res.render("login.ejs",{valid:false , message:"Login with proper Credentials "})
     })
 });
 
-
 app.post("/taskdetails",function(req,res){
     let projects=req.body;
+   if(!projects.taskheading || !projects.startDate || !projects.endDate)
+   res.json({error:"Fill all Fields Properly"})
+   else
+   {
     fs.readFile("userdetails.json",function(err,data){
         if(err){
             console.log(err)
@@ -86,21 +116,22 @@ app.post("/taskdetails",function(req,res){
             existingData[req.body.email]={}
             existingData[req.body.email][req.body.taskid]=req.body
             existingData[req.body.email][req.body.taskid].status="not-started"
-           
         }
-        // console.log(existingData)
         fs.writeFile("userdetails.json",
         JSON.stringify(existingData,null,2),
         function(err){
             if(err){
                 console.log(err)
             }else{
-                console.log("successfully written")
+                res.json({message:"success"})
             }
         }
         )
     });
+    res.json({message:"success"})
     res.redirect("/login");
+   }
+   
 })
 
 app.post("/showdetails",function(req,res){
@@ -113,23 +144,20 @@ app.post("/showdetails",function(req,res){
             var project = userproject[req.body.mailId]
             if(project!=undefined){
                 let userid=Object.keys(project)
-
                 var arrays = []
                 var array=[]
                 for (let i = 0; i < userid.length; i++) {
-                   arrays.push(project[userid[i]])
+                    arrays.push(project[userid[i]])
                 }
-                // console.log(array);
                 if(container != "containers")
                 {
                    for (let i = 0; i < arrays.length; i++) {
-                    console.log(arrays[i].status, container);
+                    // console.log(arrays[i].status, container);
                if(arrays[i].status === container)
                {
                 array.push(arrays[i]);
-               }
-                   
-                  }
+               }                   
+                }
                 }
                 console.log("conwsdfgvr",array);
                 if(sort!=undefined)
@@ -146,12 +174,10 @@ app.post("/showdetails",function(req,res){
                     if(sort === "sDate")
                     {
                         array.sort((a,b)=>{
-                            console.log(a.startDate);
                             var sDate = new Date(a.startDate).getTime();
                             var eDate = new Date(b.startDate).getTime();
                             return sDate-eDate
-                        })
-                       
+                        })                       
                         res.json(array);
                     }
                     if(sort === "eDate")
@@ -162,21 +188,15 @@ app.post("/showdetails",function(req,res){
                             return sDate-eDate
                         })
                         res.json(array);
-                    }
-        
+                    }        
                 }
                 else
                 {
                     console.log("yes");
                         res.json(arrays)
                 }
-
             }
-            
-           
-
         }
-
     })
 })
 
