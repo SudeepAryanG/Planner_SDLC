@@ -25,7 +25,7 @@
                 <h2>Register</h2>
             </div>
             <div class="panel-body" >
-                <form action="/register" method="POST" >
+                <form  onsubmit="submitCalled(event)">
                     <div class="form-group col-md">
                             <label for="firstname">User Name</label>
                             <input class="form-control" placeholder="User Name"
@@ -48,6 +48,9 @@
                        
                         <button type="submit" id="register" class="btn btn-success active">Register</button>
                 </form>
+                <div id="register-message">
+                    
+                </div>
             </div>
         </div>
     </div>

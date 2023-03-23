@@ -1,3 +1,30 @@
 {
-  
+  "a@a": {
+    "name": "Sudeep",
+    "password": "123456789"
+  },
+  "sadas@afdf": {
+    "name": "Zxc",
+    "password": "adgyugycgh"
+  },
+  "player@gmail.com": {
+    "name": "Player",
+    "password": "player123"
+  },
+  "player1@gmail.com": {
+    "name": "Player",
+    "password": "zxcvbnm,/."
+  },
+  "jay@jay": {
+    "name": "Jay",
+    "password": "jaysudha"
+  },
+  "gmail@g": {
+    "name": "Balaiya",
+    "password": "123567890"
+  },
+  "reemaa@2": {
+    "name": "Reemaa",
+    "password": "asdf@123"
+  }
 }

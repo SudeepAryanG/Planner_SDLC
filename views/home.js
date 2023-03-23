@@ -1,5 +1,8 @@
 console.log(email)
 
+/**
+ * This function stores the task details 
+ */
 function taskdetails(){
     let taskid=Date.now();
     let task={taskid,email};
@@ -24,10 +27,14 @@ function taskdetails(){
     if(res.error)
         alert(res.error)
     if(res.message)
+    console.log(res.message);
         window.location.reload()
     })
     .catch(function(res){ console.log(res) })
 }
+document.querySelector("#taskdetails").addEventListener("click",function(){
+    taskdetails()
+})
 
 function sortFun(type,container){
     fetch("/showdetails",
@@ -54,13 +61,11 @@ document.querySelector("#startDate").addEventListener("input",function(){
 })
  
 
-document.querySelector("#taskdetails").addEventListener("click",function(){
-    taskdetails()
-})
 
-document.querySelector("#taskText").addEventListener("input",()=>{
-    document.querySelector("#taskText").minHeight=document.querySelector("#taskText").scrollHeight+"px";
-})
+
+// document.querySelector("#taskText").addEventListener("input",()=>{
+//     document.querySelector("#taskText").minHeight=document.querySelector("#taskText").scrollHeight+"px";
+// })
 
 function display(array,container) {
     var div;
@@ -141,7 +146,6 @@ fetch("/showdetails",
    })
 
    function closeForm() {
-    
     document.querySelector("#popup").style.display = "none";
     console.log("close")
    }

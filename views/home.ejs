@@ -20,11 +20,11 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-header">
-        <span><img src="./img/icon.png" height="40px" width="40px"/></span>  Timely  <span id="userName" ><%= name %>'s Planner</span> 
+        <span><img src="./img/icon.png" height="40px" width="40px"/></span> Timely  <span id="userName" ><%= name %>'s Planner</span> 
         
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li> -->
         <li><a href="./login"><span id="logout"class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
@@ -33,7 +33,7 @@
   <div class="task-container flex">
     <div class="task-list left-button">Task List
         <div id="searchBtn">
-          <input id="searchItem" type="text" /><button onclick="searchTask()" class="btn btn-info"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+          <input id="searchItem" type="text" placeholder="Search any Task..." /><button onclick="searchTask()" class="btn btn-info"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
         </div>
       </div>
     <div class="middile-container">
@@ -84,44 +84,45 @@
 
           </div>
         </div>
-    </div>
-  </div>
-  <div class="display-container flex">
+        <div class="display-container flex">
     
-    <div class="container">
-      <div class="displayHeading">
-        Add Task
-      </div>
-      <input type="text" name="" id="taskheading" value="" placeholder="Task Heading"  >
-      <div class="form-group">
-        <label for="date">Start Date</label>
-        <input class="form-control" placeholder="date"
-        name="date" id="startDate" type="date" />
-      </div>
-      <div class="form-group">
-        <label for="date">End Date</label>
-        <input class="form-control" placeholder="date"
-        name="date" id="endDate" type="date"/>
-      </div>
-      <!-- <div class="dropdown">
-        <input id="statusInput" type="text" list="input" data-toggle="dropdown" />
-        <datalist id="input" >
-          <option >Not Started</option>
-          <option>In Progress</option>
-          <option>Started</option>
-        </datalist>
-      </div> -->
-      <div id="task-content">
-        <h3>Description:-</h3>
-        <div >
-          <input id="taskText"/>
+          <div class="container">
+            <div class="displayHeading">
+              <u>Add Task</u>
+            </div>
+            <input type="text" name="" id="taskheading" value="" placeholder="Task Heading"  >
+            <div class="form-group">
+              <label for="date">Start Date</label>
+              <input class="form-control" placeholder="date"
+              name="date" id="startDate" type="date" />
+            </div>
+            <div class="form-group">
+              <label for="date">End Date</label>
+              <input class="form-control" placeholder="date"
+              name="date" id="endDate" type="date"/>
+            </div>
+            <!-- <div class="dropdown">
+              <input id="statusInput" type="text" list="input" data-toggle="dropdown" />
+              <datalist id="input" >
+                <option >Not Started</option>
+                <option>In Progress</option>
+                <option>Started</option>
+              </datalist>
+            </div> -->
+            <!-- <div id="task-content">
+              <h3>Description:-</h3>
+              <div >
+                <input id="taskText"/>
+              </div>
+            </div> -->
+            
+          </div>
+          <button id="taskdetails"class="btn btn-info" >Submit</button>
+        
         </div>
-      </div>
-      
     </div>
-    <button id="taskdetails"class="btn btn-info" >Submit</button>
-  
   </div>
+  
 </div>
 </div>
 

@@ -2,7 +2,12 @@ body{
     background-image: url(./img/planner.jpg);
     background-size: cover; 
     background-repeat: no-repeat;
-
+}
+.valid{
+    color:green;
+}
+.invalid{
+    color:red;
 }
 .heading{
     color:black;

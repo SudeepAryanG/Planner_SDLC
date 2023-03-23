@@ -45,7 +45,7 @@ app.post("/search",function(req,res){
             array.push(userPrj[userid[i]])
         }
         for (let i = 0; i < array.length; i++) {
-       if(array[i].taskheading === item)
+       if(array[i].taskheading.includes(item))
        {
         arrays.push(array[i]);
         present = false
@@ -63,24 +63,34 @@ app.post("/register",function(req,res){
     let name=req.body.name;
     let email=req.body.email;
     let password=req.body.password;
+    console.log(req.body);
     fs.readFile("database.json",function(err,data){
         if(err){
             console.log(err)
         }
         const existingData=JSON.parse(data);
-        existingData[email]={name:name,password:password};
-        fs.writeFile("database.json",
-        JSON.stringify(existingData,null,2),
-        function(err){
-            if(err){
-                console.log(err)
-            }else{
-                console.log("successfully written")
+        if(existingData[email]==undefined){
+            existingData[email]={name:name,password:password};
+            fs.writeFile("database.json",
+            JSON.stringify(existingData,null,2),
+            function(err){
+                if(err){
+                    console.log(err)
+                }else{
+                    console.log("successfully written")
+                    
+                }
             }
+            )
+            res.json({valid:true,message:"Registered Successfully"});
+        }else{
+            res.json({valid:false,message:"User already exists"});
         }
-        )
+        
+        
+
+
     });
-    res.redirect("/login");
 })
 
 //Login
@@ -97,17 +107,19 @@ app.post("/login",function(req,res){
     })
 });
 
-//Adding Task to the buckets
+// Adding Task to the buckets
 app.post("/taskdetails",function(req,res){
     let projects=req.body;
    if(!projects.taskheading || !projects.startDate || !projects.endDate)
    res.json({error:"Fill all Fields Properly"})
+   
    else
    {
     fs.readFile("userdetails.json",function(err,data){
         if(err){
             console.log(err)
         }
+      
         const existingData=JSON.parse(data);
         const email=Object.keys(existingData);
         if(email.includes(req.body.email)){
@@ -129,8 +141,9 @@ app.post("/taskdetails",function(req,res){
             }
         }
         )
+       
     });
-    res.json({message:"success"})
+    // res.json({message:"success"})
     // res.redirect("/login");
    }
    
@@ -139,10 +152,11 @@ app.post("/taskdetails",function(req,res){
 app.post("/showdetails",function(req,res){
     var sort= req.body.sortType
     var container = req.body.container
+    console.log("yes");
     fs.readFile("./userdetails.json",(err,data)=>{
         if(!err){
             let userproject=JSON.parse(data);
-            
+            console.log(userproject);
             var project = userproject[req.body.mailId]
             if(project!=undefined){
                 let userid=Object.keys(project)

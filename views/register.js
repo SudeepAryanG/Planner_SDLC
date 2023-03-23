@@ -35,6 +35,33 @@ function showPassowrd(){
     }
 }
 
+function submitCalled(e){
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target)) ;
+    console.log(data);
+    const registerDiv=document.querySelector("#register-message")
+    if(data.password.length>=8)
+    fetch("/register",
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(data)//JSON.stringify({})
+    })
+  .then((res)=>res.json())
+  .then((data)=>{
+      registerDiv.innerHTML=`<p class=${data.valid?"valid":"invalid"}>${data.message}</p>`
+    if(data.valid){
+        setTimeout(()=>{
+            window.location.href="/login"
+        },1000)
+    }
+  })
+    .catch(function(res){ console.log(res) })
+}
+
 
 
 

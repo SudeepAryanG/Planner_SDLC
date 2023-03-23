@@ -21,13 +21,15 @@ body{
 #userName{
     font-size: xx-large;
     color: rgb(106, 10, 81);
-    margin-left: auto;
+    left: 45%;
+    position: absolute;
+    top: 10px;
 }
 #searchBtn{
     margin-left: auto;
 }
 .btn{
-    font-size:19px;
+    font-size:18px;
 }
 .container>ul{
     margin-top: 10px;
@@ -41,24 +43,35 @@ display: flex;
     margin: 10px;
 }
 .task-container{
-    width: 70%;
+    width: 100%;
     height: 630px;
     display: flex;
     flex-direction: column;
     row-gap:10px;
 }
+input{
+    border-radius: 5px;
+}
 .display-container{
-    width: 30%;
-    background-color:  rgba(255,255,255,0.4);
-    height: 630px;
+    width: 24%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background-color: rgba(228, 210, 210, 0.7);
+    margin: 0px 0px 20px 50px;
     border-radius: 10px;
+    font-size: x-large;
+    padding: 3%;
 }
 .task-list{
-    height: 60px;
+    /* height: 60px; */
     background-color:  rgba(255,255,255,0.4);
     border-radius: 10px;
-    padding: 1%;
+    padding: 10px;
     font-size:x-large;
+    margin-left: 3%;
+    margin-right: 5.5%;
 }
 .left-button{
     display: flex;
@@ -71,16 +84,17 @@ display: flex;
     display: flex;
     height: 90%;
     font-weight:bolder;
+    margin: 10px 40px;
 }
 h3{
     font-weight: bolder;
 }
 
 .notstarted,.inprogress,.compleated{
-    width: 32%;
-    height: 100%;
+    width: 20%;
+    /* height: 100%; */
     background-color:  rgba(255,255,255,0.2);
-    margin: 5px;
+    margin: 15px;
     border-radius: 10px;
     font-size: x-large;
     padding: 1%;
@@ -88,7 +102,7 @@ h3{
 }
 .draggable{
     /* width:27%; */
-    height:20%;
+    /* height:20%; */
     background-color:  rgba(255,255,255,0.4);
     border-radius: 10px;
     padding:3%;
@@ -147,13 +161,14 @@ h3{
     overflow-y: scroll;
 }
 .displayHeading{
-    font-size: 50px;
-    padding: 1%;
-    padding-left: 8%;
+    font-size: 40px;
+    color: rgb(106, 10, 81);
+    padding: 10px 20px;
+    /* padding-left: 8%; */
 }
 #taskheading{
-    font-size: xx-large;
-    background-color: rgba(255,255,255,0);
+    font-size: x-large;
+    /* background-color: rgba(255,255,255,0); */
     width: 250px;
 }
 #filter-options{
@@ -186,10 +201,8 @@ h3{
     /* background-color:  rgba(255,255,255,0.2); */
 }
 #taskdetails{
-    padding: 2%;
-    position: relative;
-    left: 4%;
-    top: 1%;
+    width: 200px;
+    margin-left: 40px;
 }
 
 .btn-warning+select{
