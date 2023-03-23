@@ -43,12 +43,16 @@ function sortFun(type,container){
   .then((data)=>{
     display(data,container)
     drag();
+    // closeForm();
   })
     .catch(function(res){ console.log(res) })
     
 }
 
-
+document.querySelector("#startDate").addEventListener("input",function(){
+    document.querySelector("#endDate").min=document.querySelector("#startDate").value
+})
+ 
 
 document.querySelector("#taskdetails").addEventListener("click",function(){
     taskdetails()
@@ -65,7 +69,7 @@ function display(array,container) {
     else
     div = container === "not-started"?"ns":container === "in-progress"?"ip":container === "completed"?"cc":""
     let display=``;
-    console.log( document.querySelector(`.${div}`));
+    // console.log( document.querySelector(`.${div}`));
     document.querySelectorAll(`.${div}`).forEach(e => {
         e.innerHTML="";
     });
@@ -109,12 +113,10 @@ function display(array,container) {
         if( array[i].status === "not-started")
         {
             document.querySelector(".ns").innerHTML+=display
-        }
-      
+        }      
         else if( array[i].status === "in-progress"){
             document.querySelector(".ip").innerHTML+=display
-        }
-       
+        }       
         else if(  array[i].status === "completed")
         {
             document.querySelector(".cc").innerHTML+=display
@@ -139,7 +141,9 @@ fetch("/showdetails",
    })
 
    function closeForm() {
-    document.querySelector("#popup").style.display = "none"
+    
+    document.querySelector("#popup").style.display = "none";
+    console.log("close")
    }
 
 function update(e){
@@ -252,6 +256,7 @@ function drag() {
     });
 }
 
+//Search Task Items
 function searchTask()
 {
     var search = document.querySelector("#searchItem").value;

@@ -28,7 +28,7 @@ app.get("/home",function(req,res){
 app.get("/register",function(req,res){
     res.render("register.ejs")
 })
-
+//Search Task Items
 app.post("/search",function(req,res){
    var item = req.body.search
    var present = true
@@ -58,7 +58,7 @@ app.post("/search",function(req,res){
     }
    })
 })
-
+// Register
 app.post("/register",function(req,res){
     let name=req.body.name;
     let email=req.body.email;
@@ -83,6 +83,7 @@ app.post("/register",function(req,res){
     res.redirect("/login");
 })
 
+//Login
 app.post("/login",function(req,res){
     let email= req.body.email;
     let password=req.body.password;
@@ -96,6 +97,7 @@ app.post("/login",function(req,res){
     })
 });
 
+//Adding Task to the buckets
 app.post("/taskdetails",function(req,res){
     let projects=req.body;
    if(!projects.taskheading || !projects.startDate || !projects.endDate)
@@ -129,7 +131,7 @@ app.post("/taskdetails",function(req,res){
         )
     });
     res.json({message:"success"})
-    res.redirect("/login");
+    // res.redirect("/login");
    }
    
 })
@@ -159,7 +161,7 @@ app.post("/showdetails",function(req,res){
                }                   
                 }
                 }
-                console.log("conwsdfgvr",array);
+                // console.log("conwsdfgvr",array);
                 if(sort!=undefined)
                 {
                     
@@ -192,7 +194,7 @@ app.post("/showdetails",function(req,res){
                 }
                 else
                 {
-                    console.log("yes");
+                    // console.log("yes");
                         res.json(arrays)
                 }
             }
@@ -203,7 +205,7 @@ app.post("/showdetails",function(req,res){
 //EDIT
 app.post("/editTask",(req,res)=>{
 var updated = req.body
-console.log("update",req.body);
+// console.log("update",req.body);
 updated.updatetask.email = req.body.mail
 fs.readFile("./userdetails.json",(err,data)=>{
     var userProject=JSON.parse(data);
@@ -241,7 +243,7 @@ app.post("/deleteTask",(req,res)=>{
     })
 });
 
-//Current Task
+//Update Current Task
 app.post("/updateStatus",(req,res)=>{
     var id = req.body.taskid;
     var mail=req.body.mail;
@@ -257,7 +259,6 @@ app.post("/updateStatus",(req,res)=>{
                 projects[key].status = div
             }
         }
-        // console.log(user);
         fs.writeFile("./userdetails.json",
         JSON.stringify(user,null,2),
         (err)=>{
@@ -269,7 +270,7 @@ app.post("/updateStatus",(req,res)=>{
     
 
 app.listen(port, () => {
-    console.log(`App islistening on port ${port}`);
+    console.log(`App is listening on port ${port}`);
 });
 
 

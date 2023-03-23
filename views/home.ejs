@@ -20,7 +20,7 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-header">
-        <span><img src="./img/icon.png" height="40px" width="40px"/></span>  Timely  <span id="userName"><%= name %>'s Planner</span> 
+        <span><img src="./img/icon.png" height="40px" width="40px"/></span>  Timely  <span id="userName" ><%= name %>'s Planner</span> 
         
       </div>
       <ul class="nav navbar-nav navbar-right">
@@ -31,11 +31,11 @@
   </nav>
 <div class="main-container">
   <div class="task-container flex">
-    <div class="task-list left-button">
-      <h2>Task List </h2>
-        &nbsp;          
-        <input id="searchItem" type="text" /><button onclick="searchTask()" class="btn btn-info"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-    </div>
+    <div class="task-list left-button">Task List
+        <div id="searchBtn">
+          <input id="searchItem" type="text" /><button onclick="searchTask()" class="btn btn-info"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
     <div class="middile-container">
     
        <div class="notstarted "> 
