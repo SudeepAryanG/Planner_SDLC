@@ -112,12 +112,12 @@ function display(array,container) {
             <input type="text" name="" id="popUpheading${array[i].taskid}" value="${array[i].taskheading}">
             <div class="form-group">
             <label for="date">Start Date</label>
-            <input class="form-control" placeholder="date" value="${array[i].startDate}"
+            <input class="form-control" placeholder="date" min="${getCurrentDate()}" value="${array[i].startDate}"
             name="date" id="popstartDate${array[i].taskid}" type="date"/>
             </div>
             <div class="form-group">
             <label for="date">End Date</label>
-            <input class="form-control" placeholder="date" value="${array[i].endDate}"
+            <input class="form-control" placeholder="date" min="${getCurrentDate()}" value="${array[i].endDate}"
             name="date" id="popendDate${array[i].taskid}" type="date"/>
             </div>
             <button class="btn btn-success" onclick="update(${array[i].taskid})" >Update</button>
