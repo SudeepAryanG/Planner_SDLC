@@ -56,16 +56,27 @@ function sortFun(type,container){
     
 }
 
+function getCurrentDate(){
+    // Create a date object from a date string
+var date = new Date();
+
+// Get year, month, and day part from the date
+var year = date.toLocaleString("default", { year: "numeric" });
+var month = date.toLocaleString("default", { month: "2-digit" });
+var day = date.toLocaleString("default", { day: "2-digit" });
+
+// Generate yyyy-mm-dd date string
+var formattedDate = year + "-" + month + "-" + day;
+return formattedDate
+}
+document.querySelector("#startDate").min=getCurrentDate()
 document.querySelector("#startDate").addEventListener("input",function(){
+
     document.querySelector("#endDate").min=document.querySelector("#startDate").value
 })
  
 
 
-
-// document.querySelector("#taskText").addEventListener("input",()=>{
-//     document.querySelector("#taskText").minHeight=document.querySelector("#taskText").scrollHeight+"px";
-// })
 
 function display(array,container) {
     var div;
@@ -95,7 +106,7 @@ function display(array,container) {
         </div>  
 
         <div id="popup" class="c${array[i].taskid}" >
-        <button class="btn btn-danger" onclick="closeForm()" id="closeBtn"><i class="fa-sharp fa-solid fa-xmark" style="color: white;"></i></button>
+        <button class="btn btn-danger" onclick="closeForm(${array[i].taskid})" id="closeBtn"><i class="fa-sharp fa-solid fa-xmark" style="color: white;"></i></button>
             <div id="editpop"><u>Edit Task </u></div>
             <label>Project Name</label>
             <div>    
@@ -145,8 +156,8 @@ fetch("/showdetails",
     drag()
    })
 
-   function closeForm() {
-    document.querySelector("#popup").style.display = "none";
+   function closeForm(e) {
+    document.querySelector(`.c${e}`).style.display = "none";
     console.log("close")
    }
 

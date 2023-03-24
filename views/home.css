@@ -150,6 +150,12 @@ h3{
     
 
 }
+#taskList{
+    font-size: xx-large;
+    font-weight: bolder;
+    position: absolute;
+    left: 7%;
+}
 #main-box::-webkit-scrollbar {
     display: none;
   }
@@ -163,7 +169,7 @@ h3{
 .displayHeading{
     font-size: 40px;
     color: rgb(106, 10, 81);
-    padding: 10px 20px;
+    padding: 20px 20px;
     /* padding-left: 8%; */
 }
 #taskheading{
@@ -179,7 +185,7 @@ h3{
     background-color: rgb(8, 8, 8,0.8);
     color:rgb(249, 64, 221);
     position: absolute;
-    top:30%;
+    top:33%;
     left: 40%;
     padding: 2%;
     text-align: center;

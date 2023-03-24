@@ -112,7 +112,7 @@ app.post("/taskdetails",function(req,res){
     let projects=req.body;
    if(!projects.taskheading || !projects.startDate || !projects.endDate)
    res.json({error:"Fill all Fields Properly"})
-   
+
    else
    {
     fs.readFile("userdetails.json",function(err,data){
@@ -219,7 +219,7 @@ app.post("/showdetails",function(req,res){
 //EDIT
 app.post("/editTask",(req,res)=>{
 var updated = req.body
-// console.log("update",req.body);
+console.log("update",updated);
 updated.updatetask.email = req.body.mail
 fs.readFile("./userdetails.json",(err,data)=>{
     var userProject=JSON.parse(data);
