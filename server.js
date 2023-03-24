@@ -63,7 +63,6 @@ app.post("/register",function(req,res){
     let name=req.body.name;
     let email=req.body.email;
     let password=req.body.password;
-    console.log(req.body);
     fs.readFile("database.json",function(err,data){
         if(err){
             console.log(err)
@@ -110,6 +109,7 @@ app.post("/login",function(req,res){
 // Adding Task to the buckets
 app.post("/taskdetails",function(req,res){
     let projects=req.body;
+    
    if(!projects.taskheading || !projects.startDate || !projects.endDate)
    res.json({error:"Fill all Fields Properly"})
 
@@ -122,7 +122,16 @@ app.post("/taskdetails",function(req,res){
       
         const existingData=JSON.parse(data);
         const email=Object.keys(existingData);
+        var isPresent = true;
+       
         if(email.includes(req.body.email)){
+            var keys = Object.keys(existingData[req.body.email])
+            var data = existingData[req.body.email];
+            for (let i = 0; i < keys.length; i++) {
+                if(data[keys[i]].taskheading === req.body.taskheading){
+                    isPresent = false
+                }
+            }
             existingData[req.body.email][req.body.taskid]=req.body
             existingData[req.body.email][req.body.taskid].status="not-started"
         }
@@ -131,17 +140,21 @@ app.post("/taskdetails",function(req,res){
             existingData[req.body.email][req.body.taskid]=req.body
             existingData[req.body.email][req.body.taskid].status="not-started"
         }
+        if(isPresent)
+        {
         fs.writeFile("userdetails.json",
         JSON.stringify(existingData,null,2),
         function(err){
             if(err){
                 console.log(err)
-            }else{
+            }else if(isPresent){
                 res.json({message:"success"})
             }
         }
         )
-       
+    }
+    else
+    res.json({error:"Task Already Exsist"})
     });
     // res.json({message:"success"})
     // res.redirect("/login");
@@ -152,11 +165,9 @@ app.post("/taskdetails",function(req,res){
 app.post("/showdetails",function(req,res){
     var sort= req.body.sortType
     var container = req.body.container
-    console.log("yes");
     fs.readFile("./userdetails.json",(err,data)=>{
         if(!err){
             let userproject=JSON.parse(data);
-            console.log(userproject);
             var project = userproject[req.body.mailId]
             if(project!=undefined){
                 let userid=Object.keys(project)
@@ -168,14 +179,12 @@ app.post("/showdetails",function(req,res){
                 if(container != "containers")
                 {
                    for (let i = 0; i < arrays.length; i++) {
-                    // console.log(arrays[i].status, container);
                if(arrays[i].status === container)
                {
                 array.push(arrays[i]);
                }                   
                 }
                 }
-                // console.log("conwsdfgvr",array);
                 if(sort!=undefined)
                 {
                     
@@ -208,7 +217,6 @@ app.post("/showdetails",function(req,res){
                 }
                 else
                 {
-                    // console.log("yes");
                         res.json(arrays)
                 }
             }
@@ -219,7 +227,6 @@ app.post("/showdetails",function(req,res){
 //EDIT
 app.post("/editTask",(req,res)=>{
 var updated = req.body
-console.log("update",updated);
 updated.updatetask.email = req.body.mail
 fs.readFile("./userdetails.json",(err,data)=>{
     var userProject=JSON.parse(data);
@@ -267,7 +274,6 @@ app.post("/updateStatus",(req,res)=>{
         var projects = user[mail]
         var keys=Object.keys(projects);
         for(let key of keys){
-            // console.log(projects[key].taskid ,id);
             if(projects[key].taskid===parseInt(id)){    
                 var div = progress === "ns"?"not-started":progress === "ip"? "in-progress":progress === "cc"?"completed":""
                 projects[key].status = div

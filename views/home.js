@@ -85,7 +85,6 @@ function display(array,container) {
     else
     div = container === "not-started"?"ns":container === "in-progress"?"ip":container === "completed"?"cc":""
     let display=``;
-    // console.log( document.querySelector(`.${div}`));
     document.querySelectorAll(`.${div}`).forEach(e => {
         e.innerHTML="";
     });
@@ -125,7 +124,6 @@ function display(array,container) {
         </div>
         </div>
         `
-        // console.log(display);
         if( array[i].status === "not-started")
         {
             document.querySelector(".ns").innerHTML+=display
@@ -158,7 +156,6 @@ fetch("/showdetails",
 
    function closeForm(e) {
     document.querySelector(`.c${e}`).style.display = "none";
-    console.log("close")
    }
 
 function update(e){
